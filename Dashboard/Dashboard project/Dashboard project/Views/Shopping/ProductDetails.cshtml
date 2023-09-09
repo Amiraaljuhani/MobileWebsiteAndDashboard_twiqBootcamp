@@ -1,0 +1,116 @@
+﻿@model IEnumerable<ProductDetails>
+@{
+
+    Layout = "~/Views/Shared/_LayoutShopping.cshtml";
+}
+
+
+ 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<section class="#FFFF">
+    <div class="container pb-5">
+
+        <button type="button" class="btn btn-labeled">
+            <a asp-action="Index">
+            <i class="fa fa-arrow-alt-circle-left"></i> Go Back</a>
+        </button>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                            <div class="col-lg-5 mt-5">
+                    <div class="card mb-3">
+                        <img src="~/assets/images/@item.Image" alt="Card image cap">
+
+                    </div>
+                </div>
+                <div class="col-lg-7 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="h2">@item.ProductName</h1>
+                            <p class="py-2">
+                               
+                                <span class="list-inline-item text-dark">Model:@item.Model</span>
+                            </p>
+                            <ul class="list">
+                                
+                                <li class="list-inline-item">
+
+                                    <h6>
+                                        <i class="fa fa-tag fa-flip-horizontal"></i> Price:</h6>
+                                </li>
+                                <li class="list-inline-item">
+                                        <p class="text-muted">
+                                        <strong>@item.Price SAR</strong>
+                                    </p>
+                                </li>
+                            </ul>
+
+                            <ul class="list">
+                               
+                                <li class="list-inline-item">
+                                    <h6>
+                                        <i class="fa fa-palette"></i>
+                                        Color:
+                                    </h6>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p class="text-muted"><strong>@item.color</strong></p>
+                                </li>
+                            </ul>
+
+                            <ul class="list">
+
+                                <li class="list-inline-item">
+                                    <h6> Capcity:</h6>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p class="text-muted"><strong>@item.Capacity GB</strong></p>
+                                </li>
+                            </ul>
+                            <div class=" dress-card-para" style="background-color:#f4f4f4 ">
+
+                            <ul class="list">
+
+                                <li class="list-inline-item">
+                                    <h6>
+                                            <i class="fa fa-cart-shopping"></i>
+
+                                        Quantity available
+                                        :
+                                    </h6>
+                                </li>
+                                <li class="list-inline-item">
+                                        <p class="text-muted">  <strong>@item.Qty ||  <i class="fa fa-circle-check"></i> @item.MoreDetails</strong></p>
+                                </li>
+                            </ul>
+                                </div>
+
+                            <h6><strong>Description:</strong></h6>
+<p>@item.Deisplay</p>
+
+
+                            <form action="" method="GET">
+                                <input type="hidden" name="product-title" value="Activewear">
+                                <div class="row">
+                                    <div class="col-md-6 card-button">
+                                        <div class="card-button-inner bag-button" ><a asp-action="Checkout" asp-route-id="@item.Id">Buy Now</a>                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 card-button"> 
+                                        <div class="card-button-inner wish-button">Add To Cart</div>
+                                    </div>
+
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+            }
+            <!-- col end -->
+        </div>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>

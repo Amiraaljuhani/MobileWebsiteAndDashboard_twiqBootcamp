@@ -1,0 +1,119 @@
+﻿@model IEnumerable<ProductDetails>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    Layout = "~/Views/Shared/_LayoutShopping.cshtml";
+    
+}
+    
+<header>
+<div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="content">
+                    <h1>Amira Mobile Shoop</h1>
+                    <h3></h3>
+                    <hr >
+                    <button class="btn btn-outline-secondary btn-lg mb-4 get-btn " >
+                        <a href="#product-section">Get Started</a>
+                        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>
+    <div class="line-creative">
+    <h2 class="text-center p-4 ">Why Choose Us?</h2>
+    </div>
+    <div class=" d-flex justify-content-around mx-3 my-4">
+        <div class="row row-cols-1 row-cols-md-3 g-4 ">
+         <div class="col">
+                <div class="card h-65 box-shadow">
+                    <div class="card-body  text-center">
+
+                    <img class="card-img-top  " style="color:#545a6a; width:150px; height:149px "
+                         src="~/assets/images/icons8-compose-100.png" />
+                        <h5 class="card-title mt-5">Wide Range of Mobile Devices</h5>
+                <p class="card-text">
+                            We offer a diverse selection of mobile devices, catering to different budgets and preferences. From the latest flagship smartphones to budget-friendly options, we have something for everyone.
+
+
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+            <div class="card h-65 box-shadow">
+                    <div class="card-body  text-center">
+
+
+                    <img class="card-img-top  " style=" width:150px; height:149px"
+                         src="~/assets/images/icons8-secure-100.png" />
+<div class="card-body  text-center">
+                        <h5 class="card-title">Secure and Convenient Online Shopping</h5>
+                        <p class="card-text"> Our website provides a secure platform for online transactions, ensuring the safety of your personal and financial information. With easy navigation and a user-friendly interface, shopping for mobile devices has never been easier.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col">
+                <div class="card h-65  box-shadow">
+                        <div class="card-body  text-center">
+                    <img class="card-img-top  " style=" width:146px; height:142px"
+                         src="~/assets/images/icons8-online-support-100-2.png" />
+                       
+                        <div class="card-body  text-center">
+                        <h5 class="card-title"> Customer Support</h5>
+                <p class="card-text">
+                            We prioritize customer satisfaction and provide exceptional support throughout your shopping experience. Our knowledgeable and friendly customer service team is ready to assist you with any inquiries, helping you make informed decisions and ensuring a smooth buying proce
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+
+<!--  Card container  -->
+
+<div class="container">
+    <div class="line-creative" id="product-section">
+        <h2 class="text-center p-4 ">Products</h2>
+    </div>
+    <br>
+    <br>
+    <div class="row ">
+        
+                  @foreach (var item in Model)
+    {
+
+        <div class="col-md-3">
+            <div class="dress-card">
+                <div class="dress-card-head">
+                        <img src="~/assets/images/@item.Image" class="card-img-top " alt="phone" />
+                </div>
+                <div class="dress-card-body">
+                    <h4 class="dress-card-title">@item.ProductName</h4>
+                    <p class="dress-card-para">@item.Capacity<span>GB</span> </p>
+                    <p class="dress-card-para"><span class="dress-card-price">@item.color</span>
+                        <div class="dress-card-para small-right">@item.Price</div></p>
+                        <p style="background-color:#f4f4f4 " class="dress-card-para text-center">@item.MoreDetails</p>
+
+                    <div class="row">
+                        <div class="col-md-6 card-button">
+                                <a asp-action="ProductDetails" asp-route-id="@item.Id">
+                                    <div class="card-button-inner bag-button">Details</div></a>
+                            </div>
+                        <div class="col-md-6 card-button">
+                         <div class="card-button-inner wish-button">Whishlist</div></div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+</div>

@@ -1,0 +1,193 @@
+﻿@model IEnumerable<Product>
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Home Page";
+}
+
+<body id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
+
+
+
+	<div class="row ">
+
+		<style>
+
+			.container-fluid a {
+				text-decoration: none;
+				color: white;
+				align-content: flex-end;
+			}
+
+				.container-fluid a:hover {
+					text-decoration: none;
+					color: white;
+				}
+		</style>
+
+		<div class="container-fluid">
+			<div class="row flex-nowrap">
+				<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 " style="background-color:#555E6D">
+					<div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+						<a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+							<span class="fs-5 d-none d-sm-inline">Menu</span>
+						</a>
+						<ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+							<li class="nav-item">
+
+								<a class="menu-link" asp-action="Index" class="nav-link px-0 align-middle">
+									<i class="fs-4 bi-house"></i>
+									<span class="ms-1 d-none d-sm-inline">Home</span>
+								</a>
+
+							</li>
+							<li>
+								<a asp-action="ProductDetails" class="nav-link px-0 align-middle">
+									<i class="fs-4 bi-gear"></i> <span class="ms-1 d-none d-sm-inline">Product Details</span>
+								</a>
+							</li>
+						</ul>
+						<hr>
+						<div class="dropdown pb-4">
+							<a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+								<span class="d-none d-sm-inline mx-1">loser</span>
+							</a>
+							<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+								<li><a class="dropdown-item" href="#">New project...</a></li>
+								<li><a class="dropdown-item" href="#">Settings</a></li>
+								<li><a class="dropdown-item" href="#">Profile</a></li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li><a class="dropdown-item" href="#">Sign out</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col py-1">
+
+					<div class="mt-3">
+					<h2> Hello @ViewBag.FirstName</h2>
+
+					<!--end::Svg Icon-->
+
+					<!--end::Search-->
+					<!--begin::Card title-->
+					<!--begin::Card toolbar-->
+					<div class="card-toolbar">
+						<!--begin::Toolbar-->
+						<div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
+							<!--begin::Filter-->
+							<div class="d-flex justify-content-evenly mt-4">
+								<div class="">
+									<form asp-action="ProductDetails" method="post">
+										<select class="form-select form-select-solid pr-4  " name="Id" onchange="this.form.submit()">
+											<option>Filter By Name Product</option>
+											@foreach (var item in Model)
+											{
+												<option value="@item.Id">@item.ProductName</option>
+
+											}
+										</select>
+									</form>
+								</div>
+
+								<div class=" me-3">
+
+									<!--end::Select2-->
+									<!--end::Filter-->
+									<button type="button" class="btn btn-primary  " data-bs-toggle="modal" data-bs-target="#exampleModal"> إضافة منتج جديد</button>
+									<!--end::Add customer-->
+									<!--end::Toolbar-->
+								</div>
+								<!--begin::Group actions-->
+								<div class="d-flex justify-content-end align-items-center d-none m-3" data-kt-customer-table-toolbar="selected">
+									<div class="fw-bold me-5">
+										<span class="me-2" data-kt-customer-table-select="selected_count"></span>Selected
+									</div>
+									<button type="button" class="btn btn-danger" data-kt-customer-table-select="delete_selected">Delete Selected</button>
+								</div>
+								<!--end::Group actions-->
+
+							</div>
+							<!--end::Card toolbar-->
+						</div>
+						<!--end::Card header-->
+						<!--begin::Card body-->
+					</div>
+				</div>
+					<ul class="list-unstyled">
+						<div class="card-body pt-0">
+							<!--begin::Table-->
+							<table class="table align-middle table-row-dashed fs-6 gy-5 text-center" id="kt_customers_table">
+								<!--begin::Table head-->
+								<thead>
+									<!--begin::Table row-->
+									<tr class=" text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+
+										<th class="min-w-125px " style="font-family:cairo">Product Name  </th>
+										<th class="min-w-125px " style="font-family:cairo">  Delet  </th>
+										<th class="min-w-125px " style="font-family:cairo"> Edit   </th>
+
+
+
+									</tr>
+									<!--end::Table row-->
+								</thead>
+								<!--end::Table head-->
+								<!--begin::Table body-->
+								<tbody class="fw-semibold text-gray-600 text-center">
+									@if (Model != null)
+									{
+
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td>@item.ProductName</td>
+												<td><a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a></td>
+												<td><a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a></td>
+
+											</tr>
+										}
+									}
+								</tbody>
+								<!--end::Table body-->
+							</table>
+							<!--end::Table-->
+						</div>
+					</ul>
+				</div>
+				<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">   Add New Product</button>
+							</div>
+							<form asp-action="AddProduct" method="post">
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-sm-12">
+											<label for="ProductName">  Product Name</label>
+											<input type="text" id="ProductName" name="ProductName" class="form-control form-control-sm" />
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close </button>
+									<button type="submit" class="btn btn-primary">Save</button>
+								</div>
+							</form>
+
+						</div>
+					</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+</body>
+
+
+

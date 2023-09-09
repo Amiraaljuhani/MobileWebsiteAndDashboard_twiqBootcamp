@@ -1,0 +1,56 @@
+﻿@model Product
+@{
+
+}
+@* <h1> تعديل بيانات منتج</h1>
+ *@@* <form asp-action="UpdateProducts" method="post">
+    <div class="row">
+        <div class="col-sm-12">
+            <input type="number" class="form-control" asp-for="@Model.Id" readonly />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <labe for=""> اسم المنتج</labe>
+            <input asp-for="@Model.ProductName" type="text" class="form-control" id="ProductName" name="ProductName" />
+        </div>
+    </div
+    <div class="row">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary m-2">حفظ</button>
+        </div>
+
+    </div>
+</form>
+ *@
+<!--اكتب for في الانبوت وامرر لها البيانات غن طريق المودل
+    ولا انسى اكتب فوق المودل برودكت بدون امنربل مودل لانها فقط عنصر واحد راح يرجع وليست list
+
+-->
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <h1 class="mb-3">Update Product Name </h1>
+            <form asp-action="UpdateProducts" method="post">
+                <div class="row g-3 ">
+                    <input type="hidden" class="form-control" asp-for="@Model.Id"  />
+
+                    <div class="col-md-6">
+                        <label for="ProductName" class="form-label">Product Name </label>
+                        <input asp-for="@Model.ProductName" type="text" class="form-control" id="ProductName" name="ProductName">
+                    </div>
+                  
+                </div>
+
+                <div class="col-6  mt-4">
+                    <div class="row  ">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-dark w-100 fw-bold ">Save Updates</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
