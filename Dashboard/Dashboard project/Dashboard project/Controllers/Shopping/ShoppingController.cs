@@ -37,8 +37,8 @@ namespace Dashboard_project.Controllers.Shopping
 		public async Task<string> SendMail()
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Test ", "amiira.tv@gmail.com"));
-            message.To.Add(MailboxAddress.Parse("mema199440@gmail.com"));
+            message.From.Add(new MailboxAddress("Test ", ""));
+            message.To.Add(MailboxAddress.Parse(""));
             message.Subject = "test message email";
             message.Body = new TextPart("<p> first message </p> ");
 
@@ -47,7 +47,7 @@ namespace Dashboard_project.Controllers.Shopping
                 try
                 {
                     clint.Connect("smtp.gmail.com", 587);
-                    clint.Authenticate("amiira.tv@gmail.com", "");
+                    clint.Authenticate("", "");
                     await clint.SendAsync(message);
 
                 }
@@ -145,7 +145,7 @@ public async Task<IActionResult> Invoice(int id)
     public async Task SendEmailToUser(string userEmail, string subject, string content)
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Amira", "amiira.tv@gmail.com")); 
+            message.From.Add(new MailboxAddress("Amira", "")); 
             message.To.Add(new MailboxAddress("", userEmail)); 
             message.Subject = subject;
             {
@@ -158,7 +158,7 @@ public async Task<IActionResult> Invoice(int id)
 
             var smtpClient = new SmtpClient();
             await smtpClient.ConnectAsync("smtp.gmail.com", 587, SecureSocketOptions.StartTls); 
-            await smtpClient.AuthenticateAsync("amiira.tv@gmail.com", "azyicicnayxuvmav");
+            await smtpClient.AuthenticateAsync("", "");
 
             await smtpClient.SendAsync(message);
             await smtpClient.DisconnectAsync(true);
